@@ -42,4 +42,29 @@ The app demonstrates fetching GitHub users and viewing detailed information for 
 - Kotlin DSL (`build.gradle.kts`)
 - Internet connection for API access
 
-### Configuration
+## Unit Testing
+
+Unit tests are written for **some key layers** of the app:
+
+### ✅ Layers Tested:
+- **Use Case Layer**
+- **ViewModel Layer**
+- **Repository Layer**
+
+### Libraries Used:
+- [`JUnit`](https://junit.org/)
+- [`MockK`](https://mockk.io/) for mocking dependencies
+- [`Turbine`](https://github.com/cashapp/turbine) for testing Kotlin `Flow`
+
+### Example Tests:
+
+#### ViewModel Test
+```kotlin
+@Test
+fun `users flow emits paging data`() = runTest {
+    viewModel.users.test {
+        val item = awaitItem()
+        assertNotNull(item)
+        cancelAndIgnoreRemainingEvents()
+    }
+}
