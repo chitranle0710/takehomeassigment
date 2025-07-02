@@ -9,6 +9,11 @@ import com.bumptech.glide.Glide
 import com.example.tymextakehomeapp.databinding.ItemUserBinding
 import com.example.tymextakehomeapp.domain.model.DTOUser
 
+/**
+ * PagingDataAdapter for displaying paged GitHub users.
+ *
+ * @param onClick Callback triggered when a user item is clicked.
+ */
 class UserPagingAdapter(
     private val onClick: (dtoUser: DTOUser) -> Unit
 ) : PagingDataAdapter<DTOUser, UserPagingAdapter.UserViewHolder>(
@@ -45,6 +50,9 @@ class UserPagingAdapter(
         }
     }
 
+    /**
+     * Comparator used by PagingDataAdapter to determine item differences.
+     */
     object UserComparator : DiffUtil.ItemCallback<DTOUser>() {
         override fun areItemsTheSame(oldItem: DTOUser, newItem: DTOUser): Boolean =
             oldItem.id == newItem.id

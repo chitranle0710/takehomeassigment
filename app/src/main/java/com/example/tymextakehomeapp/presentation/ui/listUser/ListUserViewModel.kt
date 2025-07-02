@@ -13,6 +13,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel responsible for fetching and providing a paginated list of GitHub users to the UI.
+ *
+ * @property getGithubUsersUseCase Use case to get paginated users from repository.
+ */
 @HiltViewModel
 class ListUserViewModel @Inject constructor(
     private val getGithubUsersUseCase: GetGithubUsersUseCase
