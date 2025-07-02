@@ -16,24 +16,13 @@ class UserRepositoryImpl(
     private val apiService: ApiService,
     private val userDao: UserDAO
 ) : IUserRepository {
-    override suspend fun fetchAndStoreUser(id: Int?) {
-        if (id == null) return
-        val user = apiService.getUserDetail(id)
-        val userEntity = UserEntity(
-            id = user.id,
-            login = user.login,
-            name = user.name,
-            followers = user.followers,
-            following = user.following,
-            avatarUrl = user.avatarUrl,
-            location = user.location
-        )
-        userDao.insertUsers(userEntity)
-    }
 
     override suspend fun getStoredUser(id: Int?): DTOUser? {
-        return id?.let {
-            val userEntity = userDao.getUserById(it) ?: return null
+        if (id == null) return null
+
+        val userEntity = userDao.getUserById(id)
+
+        return if (userEntity != null) {
             DTOUser(
                 id = userEntity.id,
                 login = userEntity.login,
@@ -43,6 +32,29 @@ class UserRepositoryImpl(
                 avatarUrl = userEntity.avatarUrl,
                 location = userEntity.location,
                 htmlUrl = userEntity.avatarUrl
+            )
+        } else {
+            val user = apiService.getUserDetail(id)
+            val newUserEntity = UserEntity(
+                id = user.id,
+                login = user.login,
+                name = user.name,
+                followers = user.followers,
+                following = user.following,
+                avatarUrl = user.avatarUrl,
+                location = user.location
+            )
+            userDao.insertUsers(newUserEntity)
+
+            DTOUser(
+                id = user.id,
+                login = user.login,
+                name = user.name,
+                followers = user.followers,
+                following = user.following,
+                avatarUrl = user.avatarUrl,
+                location = user.location,
+                htmlUrl = user.avatarUrl
             )
         }
     }

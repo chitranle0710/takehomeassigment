@@ -1,4 +1,4 @@
-package com.example.tymextakehomeapp.presentation.ui
+package com.example.tymextakehomeapp.presentation.ui.listUser
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

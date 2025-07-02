@@ -1,4 +1,4 @@
-package com.example.tymextakehomeapp.presentation.ui
+package com.example.tymextakehomeapp.presentation.ui.listUser
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tymextakehomeapp.databinding.FragmentListUserBinding
@@ -29,7 +30,6 @@ class ListUserFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -55,7 +55,13 @@ class ListUserFragment : Fragment() {
     private fun initAdapter() {
         binding.rvUser.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            userAdapter = UserPagingAdapter()
+            userAdapter = UserPagingAdapter(
+                onClick = { user ->
+                    val action = ListUserFragmentDirections
+                        .actionListUserFragmentToUserDetailsFragment(userId = user.id ?: -1)
+                    findNavController().navigate(action)
+                }
+            )
             adapter = userAdapter
         }
     }

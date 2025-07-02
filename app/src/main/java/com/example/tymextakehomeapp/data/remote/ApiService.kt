@@ -12,6 +12,6 @@ interface ApiService {
         @Query("per_page") perPage: Int = 20
     ): List<User>
 
-    @GET("users/{username}")
+    @GET("users/{id}")
     suspend fun getUserDetail(@Path("id") id: Int): User
 }

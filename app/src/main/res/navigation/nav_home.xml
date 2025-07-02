@@ -7,7 +7,24 @@
 
     <fragment
         android:id="@+id/listUserFragment"
-        android:name="com.example.tymextakehomeapp.presentation.ui.ListUserFragment"
+        android:name="com.example.tymextakehomeapp.presentation.ui.listUser.ListUserFragment"
         android:label="fragment_list_user"
-        tools:layout="@layout/fragment_list_user" />
+        tools:layout="@layout/fragment_list_user">
+        <action
+            android:id="@+id/action_listUserFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.example.tymextakehomeapp.presentation.ui.userDetail.UserDetailsFragment"
+        android:label="fragment_user_details"
+        tools:layout="@layout/fragment_user_details">
+        <argument
+            android:name="userId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+
 </navigation>

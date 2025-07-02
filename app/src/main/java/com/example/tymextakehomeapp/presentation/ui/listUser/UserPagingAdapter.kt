@@ -1,4 +1,4 @@
-package com.example.tymextakehomeapp.presentation.ui
+package com.example.tymextakehomeapp.presentation.ui.listUser
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,11 @@ import com.bumptech.glide.Glide
 import com.example.tymextakehomeapp.databinding.ItemUserBinding
 import com.example.tymextakehomeapp.domain.model.DTOUser
 
-class UserPagingAdapter : PagingDataAdapter<DTOUser, UserPagingAdapter.UserViewHolder>(UserComparator) {
+class UserPagingAdapter(
+    private val onClick: (dtoUser: DTOUser) -> Unit
+) : PagingDataAdapter<DTOUser, UserPagingAdapter.UserViewHolder>(
+    UserComparator
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = ItemUserBinding.inflate(
@@ -28,6 +32,9 @@ class UserPagingAdapter : PagingDataAdapter<DTOUser, UserPagingAdapter.UserViewH
 
         fun bind(user: DTOUser) {
             binding.apply {
+                root.setOnClickListener {
+                    onClick.invoke(user)
+                }
                 tvUserName.text = user.login
                 tvName.text = user.name ?: "N/A"
                 Glide.with(imgAvatar)
