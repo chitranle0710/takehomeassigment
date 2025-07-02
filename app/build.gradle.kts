@@ -79,4 +79,13 @@ dependencies {
     kapt(libs.glide.compiler)
 
     implementation(libs.okhttp.logging)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.mockk)
+
+    testImplementation(libs.turbine)
+
 }

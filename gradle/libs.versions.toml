@@ -21,6 +21,12 @@ room = "2.6.1"
 paging = "3.2.1" # Latest stable as of 2025
 glide = "4.16.0" # or latest
 
+androidx-test-core = "1.5.0"
+androidx-test-ext-junit = "1.1.5"
+coroutines-test = "1.6.4"
+mockk = "1.13.10"
+turbine = "1.0.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "corektx" }
@@ -52,6 +58,11 @@ room-paging = { module = "androidx.room:room-paging", version = "2.6.1" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version = "4.12.0" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidx-test-core" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 
 [plugins]
