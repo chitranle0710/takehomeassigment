@@ -3,14 +3,14 @@
 This project is a take-home assignment for an Android Developer position at **TymeX**.  
 The app demonstrates fetching GitHub users and viewing detailed information for each user using modern Android development best practices.
 
-## 🧩 Features
+## Features
 
 - Paginated list of GitHub users (20 per page)
 - User detail screen with offline-first support
 - Stores user detail locally for instant access on second app launch
 - Navigation between list and detail screens
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 ### Architecture & Patterns
 - **MVVM** (Model-View-ViewModel)
@@ -46,7 +46,7 @@ The app demonstrates fetching GitHub users and viewing detailed information for 
 
 Unit tests are written for **some key layers** of the app:
 
-### ✅ Layers Tested:
+### Layers Tested:
 - **Use Case Layer**
 - **ViewModel Layer**
 - **Repository Layer**
