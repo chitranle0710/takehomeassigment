@@ -1,5 +1,6 @@
 package com.example.tymextakehomeapp.presentation.ui.userDetail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,9 +11,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.tymextakehomeapp.R
+import com.example.tymextakehomeapp.data.remote.dto.User
 import com.example.tymextakehomeapp.databinding.FragmentListUserBinding
 import com.example.tymextakehomeapp.databinding.FragmentUserDetailsBinding
+import com.example.tymextakehomeapp.domain.model.DTOUser
 import com.example.tymextakehomeapp.presentation.ui.listUser.ListUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -49,10 +53,30 @@ class UserDetailsFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.user.collect { user ->
                     user?.let {
-                        println("User Detail print $user")
+                        initData(it)
                     }
                 }
             }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initData(user: DTOUser) {
+        with(binding) {
+            tvUserName.text = user.login
+            tvName.text = user.name ?: "N/A"
+            Glide.with(imgAvatar)
+                .load(user.avatarUrl)
+                .circleCrop()
+                .into(imgAvatar)
+
+
+            tvFollowersData.text = "${user.followers}+"
+            tvFollowingData.text = "${user.following}+"
+
+
+            tvBlogLink.text = user.htmlUrl
+
         }
     }
 }

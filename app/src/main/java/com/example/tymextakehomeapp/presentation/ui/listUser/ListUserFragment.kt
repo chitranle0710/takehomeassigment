@@ -43,13 +43,15 @@ class ListUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "GitHub Users"
-
+        setUpToolbar()
         initAdapter()
         observerLoading()
         submitPagingData()
+    }
 
+    private fun setUpToolbar() {
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "GitHub Users"
     }
 
     private fun initAdapter() {

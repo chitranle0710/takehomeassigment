@@ -18,6 +18,6 @@ interface UserDAO {
     @Query("DELETE FROM users")
     suspend fun clearAll()
 
-    @Query("SELECT * FROM Users WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM Users WHERE login = :id")
     suspend fun getUserById(id: Int): UserEntity?
 }
